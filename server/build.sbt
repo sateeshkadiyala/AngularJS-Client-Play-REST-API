@@ -11,6 +11,7 @@ libraryDependencies ++= Seq(
   cache,
   javaWs,
   filters,
+  "javax.inject" % "javax.inject" % "1",
   "org.postgresql"    %  "postgresql"        % "9.4-1201-jdbc41"
 )
 
