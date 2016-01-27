@@ -27,7 +27,7 @@ As of now, it has three views
 
 ###How does this work?
 
-The AngularJS web client (it could be a mobile app also) obtains the access token from OAUTH2 provider (facebook) and POST this token along with the email to secure social route.
+The AngularJS web client obtains the access token from OAUTH2 provider (facebook) and POST this token along with the email to secure social route.
 
  *API Call* :  
  
@@ -55,6 +55,8 @@ The AngularJS web client (it could be a mobile app also) obtains the access toke
             
             
 Client then takes the token and uses it for making subsequent calls by placing the token in "X-AUTH-TOKEN" header. If  your token expires you will get a 401. If you make a call without the token you will get a 401.
+
+All the REST API calls are prefixed with '/api'. You can change this to whatever you want, but make sure that you change the grunt connection proxy settings, in order to make it work local.
 
 
 The main source of information to knit all these pieces together is from the below article.
