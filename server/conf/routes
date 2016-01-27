@@ -3,8 +3,10 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-POST    /api/authenticate               controllers.Application.authenticate()
+POST    /api/authenticate/:provider        @securesocial.controllers.LoginApi.authenticate(provider, builder = "token")
+GET    /api/authenticate/logout           @securesocial.controllers.LoginApi.logout
+GET     /api/restricted                    controllers.Application.restricted()
+
 
 
 # Map static resources from the /public folder to the /assets URL path

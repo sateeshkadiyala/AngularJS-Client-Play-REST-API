@@ -8,18 +8,12 @@
  * Controller of the angularJsPlayRestApiApp
  */
 angular.module('angularJsPlayRestApiApp')
-  .controller('MainCtrl', function ($scope, $http) {
-        $scope.authFB = function(){
+  .controller('MainCtrl', ['UserService', '$scope', function(UserService, scope){
 
-            $http.post('api/authenticate').success(function(data){
+    scope.user = UserService;
 
-                console.log(data.message);
-
-            }).error(function(){
-                console.log("Failed to authenticate using Face Book");
-            })
-
-        }
-
-
-  });
+    /*$scope.$on('fb_user_logged_out', function(){
+       scope.user = UserService.
+    });
+*/
+  }]);

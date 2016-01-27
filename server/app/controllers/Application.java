@@ -1,35 +1,39 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import play.*;
+import play.libs.F;
 import play.libs.Json;
-import play.libs.ws.WSClient;
-import play.libs.ws.WSRequest;
 import play.mvc.*;
 import javax.inject.Inject;
 
 
-import views.html.*;
+import securesocial.core.BasicProfile;
+import securesocial.core.RuntimeEnvironment;
+import securesocial.core.java.SecureSocial;
+import securesocial.core.java.SecuredAction;
+import securesocial.core.java.UserAwareAction;
+import service.customer.CustomerProfile;
 
 public class Application extends Controller {
 
-    @Inject
-    WSClient ws;
+    private RuntimeEnvironment env;
 
-    public Result index() {
-        ObjectNode result = Json.newObject();
-        result.put("message", "CORS - Enabled.");
-        return ok(result);
+    /**
+     * A constructor needed to get a hold of the environment instance.
+     * This could be injected using a DI framework instead too.
+     *
+     * @param env
+     */
+    @Inject
+    public Application (RuntimeEnvironment env) {
+        this.env = env;
     }
 
-    public Result authenticate(){
-      /*  String access_token_url = "https://graph.facebook.com/v2.5/oauth/access_token";
-        String graph_api_url = "https://graph.facebook.com/v2.5/me";
-        */
-
-      return ok()
-
+    @SecuredAction(responses = MySecuredResponses.class)
+    public Result restricted() {
+        ObjectNode result = Json.newObject();
+        result.put("message", "Secret..Shhh!!" );
+        return ok(result);
     }
 
 }
