@@ -2,6 +2,8 @@
 
 This project intends to provide out of the box solution for all those who want to build Products and test their hypothesis quickly.
 
+It provides secure access to your REST API Calls using an OAuth2 provider(facebook).
+
 ##Server Side:
 
 The server side project leverages Playframework 2.4.3 and secure social 3.0-M4 module.
@@ -25,9 +27,11 @@ As of now, it has three views
 
 ###How does this work?
 
-Obtain an access token from AngularJS web client (it could be a mobile app also) and POST this token along with the email to secure social route.
+The AngularJS web client (it could be a mobile app also) obtains the access token from OAUTH2 provider (facebook) and POST this token along with the email to secure social route.
 
- *API Call* :  `api/authenticate/provider'
+ *API Call* :  
+ 
+            `api/authenticate/provider'
 
 *POST DATA*   :
 
