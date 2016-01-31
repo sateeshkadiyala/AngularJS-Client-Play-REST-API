@@ -1,6 +1,6 @@
 # AngularJS-Client-Play-REST-API
 
-This project intends to provide out of the box solution for all those who want to build Products and test their hypothesis quickly.
+This project intends to provide build Products qucikly and test their hypothesis quickly.
 
 It provides secure access to your REST API Calls using an OAuth2 provider(facebook). This project uses the AngularJS web app as client, you can replace the client with any mobile app also.
 
