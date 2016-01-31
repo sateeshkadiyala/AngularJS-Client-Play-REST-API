@@ -18,13 +18,12 @@ var angularJsPlayRestApiApp = angular
     'ngRoute',
     'ngSanitize',
     'ngStorage',
-    'angularJsPlayRestApiApp.controllers',
     'ngMaterial'
 
   ]);
 
-angularJsPlayRestApiApp.run(['$rootScope', '$window',
-  function($rootScope, $window) {
+angularJsPlayRestApiApp.run(['$rootScope', '$window', '$timeout',
+  function($rootScope, $window, $timeout) {
     $window.fbAsyncInit = function() {
 
       FB.init({
@@ -35,7 +34,7 @@ angularJsPlayRestApiApp.run(['$rootScope', '$window',
         xfbml: true
       });
       FB.Event.subscribe('auth.statusChange', function(response) {
-        $rootScope.$broadcast("fb_statusChange", {'status': response.status});
+          $rootScope.$broadcast("fb_statusChange", {'status': response.status});
       });
 
     };

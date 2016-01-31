@@ -62,5 +62,12 @@ angular.module('angularJsPlayRestApiApp').factory('AuthService', ['$rootScope', 
         });
       },
 }
+
+  $rootScope.$on("fb_statusChange", function (event, args) {
+    $rootScope.fb_status = args.status;
+    if(args.status == "connected")
+      service.login();
+  });
+
   return service;
 }]);
