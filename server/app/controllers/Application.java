@@ -1,5 +1,6 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.libs.F;
 import play.libs.Json;
@@ -31,8 +32,9 @@ public class Application extends Controller {
 
     @SecuredAction(responses = MySecuredResponses.class)
     public Result restricted() {
+        CustomerProfile user = (CustomerProfile) ctx().args.get(SecureSocial.USER_KEY);
         ObjectNode result = Json.newObject();
-        result.put("message", "Secret..Shhh!!" );
+        result.put("message", "Secret..Shhh!!");
         return ok(result);
     }
 

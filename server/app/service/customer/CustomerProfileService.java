@@ -27,7 +27,6 @@ public class CustomerProfileService extends BaseUserService<CustomerProfile> {
         CustomerProfile result = null;
         Customers customers = new Customers();
         if (mode == SaveMode.SignUp()) {
-            result = new CustomerProfile(profile);
             customers.createdDate = new Date();
             customers.email = result.main.email().get();
             customers.firstName = result.main.firstName().get();
@@ -37,8 +36,9 @@ public class CustomerProfileService extends BaseUserService<CustomerProfile> {
             customers.providerUserId = result.main.userId();
             customers.lastLogin = new Date();
             customers.save();
+            result = new CustomerProfile(profile);
         } else if(mode == SaveMode.LoggedIn()){
-
+            result = new CustomerProfile(profile);
         }else {
             throw new RuntimeException("Unknown SaveMode : Not able to signup");
         }
@@ -133,7 +133,7 @@ public class CustomerProfileService extends BaseUserService<CustomerProfile> {
     public F.Promise<BasicProfile> doFindByEmailAndProvider(String email, String providerId) {
         BasicProfile found = null;
 
-        List<Customers> customer = Ebean.find(Customers.class).select("*")
+        List<Customers> customers = Ebean.find(Customers.class).select("*")
                 .where()
                 .eq("email", email)
                 .conjunction()
