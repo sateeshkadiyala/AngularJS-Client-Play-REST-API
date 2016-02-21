@@ -1,0 +1,1 @@
+web: target/universal/stage/bin/playApi -Dhttp.port=${PORT} -Dplay.version=2.4.3 -DapplyEvolutions.default=true -DapplyDownEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=$DATABASE_URL

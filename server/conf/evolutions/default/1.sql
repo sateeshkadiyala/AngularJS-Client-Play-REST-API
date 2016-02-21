@@ -3,7 +3,7 @@
 
 # --- !Ups
 
-create table customers (
+create table customer (
   id                        varchar(40) not null,
   provider                  varchar(255),
   provider_user_id          varchar(255),
@@ -13,8 +13,8 @@ create table customers (
   last_login                timestamp,
   created_date              timestamp,
   is_email_validated        boolean,
-  constraint uq_customers_1 unique (provider,provider_user_id),
-  constraint pk_customers primary key (id))
+  constraint uq_customer_1 unique (provider,provider_user_id),
+  constraint pk_customer primary key (id))
 ;
 
 
@@ -22,5 +22,5 @@ create table customers (
 
 # --- !Downs
 
-drop table if exists customers cascade;
+drop table if exists customer cascade;
 

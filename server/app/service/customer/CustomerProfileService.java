@@ -2,14 +2,11 @@
 package service.customer;
 
 import com.avaje.ebean.Ebean;
-import models.Customers;
+import models.Customer;
 import play.Logger;
 import play.libs.F;
 import play.libs.Scala;
 import securesocial.core.*;
-import securesocial.core.authenticator.HttpHeaderAuthenticator;
-import securesocial.core.authenticator.HttpHeaderAuthenticator$;
-import securesocial.core.authenticator.HttpHeaderAuthenticatorBuilder;
 import securesocial.core.services.SaveMode;
 import securesocial.core.java.BaseUserService;
 import securesocial.core.java.Token;
@@ -25,8 +22,9 @@ public class CustomerProfileService extends BaseUserService<CustomerProfile> {
     @Override
     public F.Promise<CustomerProfile> doSave(BasicProfile profile, SaveMode mode) {
         CustomerProfile result = null;
-        Customers customers = new Customers();
+        Customer customers = new Customer();
         if (mode == SaveMode.SignUp()) {
+            result = new CustomerProfile(profile);
             customers.createdDate = new Date();
             customers.email = result.main.email().get();
             customers.firstName = result.main.firstName().get();
@@ -36,7 +34,6 @@ public class CustomerProfileService extends BaseUserService<CustomerProfile> {
             customers.providerUserId = result.main.userId();
             customers.lastLogin = new Date();
             customers.save();
-            result = new CustomerProfile(profile);
         } else if(mode == SaveMode.LoggedIn()){
             result = new CustomerProfile(profile);
         }else {
@@ -83,7 +80,7 @@ public class CustomerProfileService extends BaseUserService<CustomerProfile> {
         if(logger.isDebugEnabled()){
             logger.debug("Finding user " + userId);
         }
-        List<Customers> customer = Ebean.find(Customers.class).select("*")
+        List<Customer> customer = Ebean.find(Customer.class).select("*")
                                         .where()
                                             .eq("provider_user_id", userId)
                                         .conjunction()
@@ -98,7 +95,7 @@ public class CustomerProfileService extends BaseUserService<CustomerProfile> {
         return F.Promise.pure(found);
     }
 
-    private BasicProfile buildBasicProfile(Customers customer) {
+    private BasicProfile buildBasicProfile(Customer customer) {
         return BasicProfile$.MODULE$.apply(
                     customer.provider,
                     customer.providerUserId,
@@ -133,7 +130,7 @@ public class CustomerProfileService extends BaseUserService<CustomerProfile> {
     public F.Promise<BasicProfile> doFindByEmailAndProvider(String email, String providerId) {
         BasicProfile found = null;
 
-        List<Customers> customers = Ebean.find(Customers.class).select("*")
+        List<Customer> customers = Ebean.find(Customer.class).select("*")
                 .where()
                 .eq("email", email)
                 .conjunction()

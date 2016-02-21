@@ -16,7 +16,7 @@ import java.util.Date;
         @UniqueConstraint(columnNames={"provider", "provider_user_id"})
 )
 @Entity
-public class Customers extends Model{
+public class Customer extends Model{
 
         @Id
         public java.util.UUID id;
