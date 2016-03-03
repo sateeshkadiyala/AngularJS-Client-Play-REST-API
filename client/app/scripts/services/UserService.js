@@ -15,7 +15,12 @@ app.factory('UserService', ['$localStorage', '$rootScope', '$http', '$location',
           }
         }
 
-        $http.post('api/authenticate/facebook', parameters).success(function (response) {
+       /* $http.get('/api/test').success(function(data){
+          console.log("hi success" + data.message);
+        }).error(function(){
+          console.log("error");
+        })
+       */ $http.post('/api/authenticate/facebook', parameters).success(function (response) {
           $localStorage.token = response.token;
           $location.path("/");
           user.userName = me.name;

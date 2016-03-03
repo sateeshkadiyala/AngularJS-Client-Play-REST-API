@@ -15,7 +15,7 @@ import securesocial.core.java.SecuredAction;
 import securesocial.core.java.UserAwareAction;
 import service.customer.CustomerProfile;
 
-public class Application extends Controller {
+public class Application extends Controller  {
 
     private RuntimeEnvironment env;
 
@@ -37,5 +37,14 @@ public class Application extends Controller {
         result.put("message", "Secret..Shhh!!");
         return ok(result);
     }
+
+    public Result test(){
+        response().setHeader("Access-Control-Allow-Origin", "*");
+        ObjectNode result = Json.newObject();
+
+        result.put("greetings", "HI..Warrior!");
+        return ok(result);
+    }
+
 
 }

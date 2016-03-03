@@ -1,10 +1,8 @@
 package models;
 
 import com.avaje.ebean.Model;
-import com.sun.javafx.beans.IDProperty;
-import play.data.format.Formats;
-import securesocial.core.GenericProfile;
 
+import play.data.format.Formats;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

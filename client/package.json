@@ -1,7 +1,14 @@
 {
   "name": "angularjsplayrestapi",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "*",
+    "express": "^4.13.4",
+    "gzippo": "^0.2.0",
+    "heroku-proxy": "^2.1.1",
+    "http-proxy": "*",
+    "morgan": "^1.0.1"
+  },
   "repository": {},
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -37,9 +44,10 @@
     "time-grunt": "^1.0.0"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": "4.1.1"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "build" : "grunt build"
   }
 }

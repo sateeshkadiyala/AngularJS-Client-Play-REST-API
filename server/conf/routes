@@ -3,12 +3,14 @@
 # ~~~~
 
 # Home page
-POST    /api/authenticate/:provider        @securesocial.controllers.LoginApi.authenticate(provider, builder = "token")
-GET    /api/authenticate/logout           @securesocial.controllers.LoginApi.logout
+#POST    /api/authenticate/:provider        @securesocial.controllers.LoginApi.authenticate(provider, builder = "token")
+#GET    /api/authenticate/logout           @securesocial.controllers.LoginApi.logout
 GET     /api/restricted                    controllers.Application.restricted()
+GET     /api/test                           controllers.Application.test()
 
 
 
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
-->         /auth                securesocial.Routes
+# Map static resources from the /public folder to the /assets URL pathactivator
+
+#GET        /assets/*file                                  controllers.Assets.at(path="/public/lib/securesocial", file)
+->         /                securesocial.Routes
